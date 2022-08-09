@@ -14,6 +14,8 @@ public class Sort {
 
         List<Member> sortedByAge = sortByAge(members, "asc");
         sortedByAge.forEach(System.out::println);
+        System.out.println("sortByAge desc-------------------------------------");
+        sortByAge(members, "desc").forEach(System.out::println);
     }
 
     private static List<Member> sortByAge(List<Member> list, String order) {
