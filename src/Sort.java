@@ -6,6 +6,7 @@ by jeon-wangi
 import Entity.Member;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Sort {
@@ -14,8 +15,10 @@ public class Sort {
 
         List<Member> sortedByAge = sortByAge(members, "asc");
         sortedByAge.forEach(System.out::println);
-        System.out.println("sortByAge desc-------------------------------------");
+        System.out.println("sortByAge -------------------------------------");
         sortByAge(members, "desc").forEach(System.out::println);
+        System.out.println("sortByName -------------------------------------");
+        sortByName(members, "asc").forEach(System.out::println);
     }
 
     private static List<Member> sortByAge(List<Member> list, String order) {
@@ -27,6 +30,16 @@ public class Sort {
                 return o1.getAge() > o2.getAge() ? - 11 : o1.getAge() == o2.getAge() ? o2.getName().compareTo(o1.getName()) : 1;
             }
         });
+        return copied;
+    }
+
+    private static List<Member> sortByName(List<Member> list, String order) {
+        ArrayList<Member> copied = new ArrayList<>(list);
+        if (order.equals("asc"))
+            copied.sort(Comparator.comparing(Member::getName));
+        else
+            copied.sort((o1, o2) -> o2.getName().compareTo(o1.getName()));
+
         return copied;
     }
 }
